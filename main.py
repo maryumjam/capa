@@ -11,10 +11,10 @@ def main():
             st.warning("Please enter deviation report text.")
             return
 
-        workflow = build_capa_workflow_graph()  # returns compiled graph (Runnable)
+        workflow = build_capa_workflow_graph()  # returns compiled Lang Graph which contains all summarize using rag-> classify->suggest
 
         initial_state = {"text": user_input}
-        result = workflow.invoke(initial_state)  # run workflow passing initial state dict
+        result = workflow.invoke(initial_state)  # run workflow passing initial state dict to the summarize node
 
         st.markdown("### Summary:")
         st.write(result["summary"])
