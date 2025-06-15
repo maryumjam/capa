@@ -102,18 +102,61 @@ capa_deviation_reasoning_agent/
 
 ---
 
-## Installation
+## 🚀 Installation (with Docker)
+
+We now use Docker to simplify setup and avoid dependency issues. This ensures consistency across all environments.
+
+### ✅ Prerequisites
+
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running on your machine
+  (macOS, Windows, or Linux — all supported)
+
+---
+
+### 🛠️ Build the Docker Image
+
+From the root of the project:
 
 ```bash
-pip install -r requirements.txt
+docker build -t capa-reasoning-agent .
 ```
 
-> **Note:** Python 3.9+ recommended due to dependencies like `transformers`, `torch`, and `faiss-cpu`.
-> Make sure to set your OpenAI API key as environment variable:
->
-> ```bash
-> export OPENAI_API_KEY="your_openai_api_key"
-> ```
+---
+
+### 🔑 Set Your OpenAI API Key
+
+You can pass your OpenAI API key securely as an environment variable when running the app.
+
+**Option 1: Pass directly in terminal**
+
+```bash
+docker run -p 8501:8501 \
+  -e OPENAI_API_KEY=sk-...yourkey... \
+  capa-reasoning-agent
+```
+
+**Option 2: Use a `.env` file (recommended for dev)**
+
+1. Create a `.env` file in the project root:
+
+   ```
+   OPENAI_API_KEY=sk-...yourkey...
+   ```
+
+2. The app will automatically load this using `python-dotenv`.
+
+---
+
+### 🌐 Access the App
+
+After the container starts, open your browser and go to:
+
+[http://localhost:8501](http://localhost:8501)
+
+---
+
+Let me know if you want a `docker-compose.yml` version or development tips (like auto-reloading on code changes).
+
 
 ---
 
@@ -124,6 +167,7 @@ pip install -r requirements.txt
 * Hybrid agentic reasoning with rule-based and LLM pipelines
 * Domain-specific design for GxP/QMS compliance environments
 * Streamlit app development for interactive UX
+* Dockerized deployment for consistent, portable, and dependency-free setup
 
 ---
 
