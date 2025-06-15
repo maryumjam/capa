@@ -75,7 +75,7 @@ It mimics a **skilled quality analyst’s thought process** — but delivers ins
 
 ```mermaid
 graph LR
-  A[Deviation Report Text] --> B[Vector Embedding (MiniLM)]
+  A[Deviation Report] --> B[Vector Embed]
   B --> C[FAISS Semantic Search]
   C --> D[Retrieve Top-K Relevant SOPs]
   D --> E[RAG Summarizer (BART + Context)]
