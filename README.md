@@ -1,10 +1,7 @@
----
-
 # CAPA Deviataion Reasoning Agent
 
 **LLMs + LangChain + LangGraph+ RAG + Agentic AI for CAPA Reasoning**
 
----
 
 # CAPA Reasoning Agent – AI-Powered Deviation Analysis
 
