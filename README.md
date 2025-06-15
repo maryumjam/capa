@@ -1,6 +1,8 @@
-# capa_deviation_reasoning_agent
-LLMS + RAG+ Agentic AI
-Absolutely, Maryam. Below is a **polished, professional README** for your CAPA Reasoning Agent project that not only explains the technical implementation but also emphasizes design decisions, real-world relevance, and your ability to work with advanced AI concepts. It’s tailored to impress an interviewer—particularly one interested in AI, compliance, or industry use cases.
+---
+
+# CAPA Deviataion Reasoning Agent
+
+**LLMs + LangChain + LangGraph+ RAG + Agentic AI for CAPA Reasoning**
 
 ---
 
@@ -8,134 +10,139 @@ Absolutely, Maryam. Below is a **polished, professional README** for your CAPA R
 
 **A domain-aware, retrieval-augmented agent for analyzing pharmaceutical/biotech deviation reports and recommending structured CAPA (Corrective and Preventive Action) plans.**
 
-
 ---
 
 ## Overview
 
-This project showcases an **AI-powered agent** designed to:
+This project delivers an **AI-powered agent** designed to:
 
-*  **Parse unstructured deviation reports**
-*  **Summarize key incidents** using an LLM 
-*  **Classify root cause** with logic-based 
-*  **Generate CAPA suggestions** (Corrective + Preventive)
-*  **Incorporate RAG** (Retrieval-Augmented Generation) to ground summaries in enterprise knowledge base
+* **Parse unstructured deviation reports**
+* **Summarize key incidents** with LLM-augmented retrieval
+* **Classify root causes** combining domain logic and AI
+* **Generate actionable CAPA suggestions** (Corrective + Preventive)
+* **Ground outputs via RAG** using an enterprise SOP knowledge base
 
 Built with:
 
-* HuggingFace Transformers (`facebook/bart-large-cnn`, `MiniLM`)
-* FAISS + SentenceTransformers for semantic search
-* GxP-compliant domain logic
-* Streamlit for rapid prototyping
+* HuggingFace Transformers (`facebook/bart-large-cnn`, `all-MiniLM-L6-v2`)
+* FAISS + SentenceTransformers for semantic document search
+* LangChain & LangGraph for modular AI workflow orchestration
+* Streamlit for rapid prototyping and UI
 
 ---
 
 ## Why This Matters
 
-Deviation and CAPA handling is mission-critical in life sciences. Traditional systems rely on:
+Deviation and CAPA management is **mission-critical in regulated life sciences environments**. Conventional workflows suffer from:
 
-* Manual report parsing 
-* Reactive CAPA suggestions 
-* Lack of traceability across historical data 
+* Manual, error-prone report analysis
+* Reactive CAPA formulation with limited traceability
+* Lack of contextual grounding in historical data and SOPs
 
-This agent brings:
+This agent provides:
 
-* **AI-driven root cause reasoning**
-* **Summarization grounded in enterprise SOPs**
-* **GMP/GxP contextual alignment**
+* **AI-driven root cause reasoning with explainability**
+* **Summarization contextualized by enterprise documents**
+* **Alignment with GMP/GxP compliance frameworks**
 
-It mimics how a **human quality analyst** thinks—with the speed and consistency of a machine.
+It mimics a **skilled quality analyst’s thought process** — but delivers insights with machine speed, scale, and consistency.
 
 ---
 
-##  Features
+## Features
 
-| Module               | Function                                               |
-| -------------------- | ------------------------------------------------------ |
-| `document_reader.py` | Reads uploaded deviation text                          |
-| `capa_agent.py`      | Summarizes, classifies root cause, recommends CAPA     |
-| `rag_index.py`       | Retrieves contextually relevant docs from vector store |
-| `main.py`            | Streamlit app connecting all modules                   |
+| Module               | Purpose                                                                   |
+| -------------------- | ------------------------------------------------------------------------- |
+| `document_reader.py` | Reads and preprocesses uploaded deviation text                            |
+| `rag_index.py`       | Builds and queries vector store for RAG retrieval                         |
+| `chains.py`          | Defines LLM chains for summarization, classification, and CAPA suggestion |
+| `langgraph_capa.py`  | Orchestrates AI workflow graph (LangGraph)                                |
+| `main.py`            | Streamlit app integrating all components                                  |
 
 ---
 
 ## Example Workflow
 
-1. **Upload deviation report** (`.txt`)
-2. Model **summarizes** using BART or RAG
-3. Agent **classifies root cause** (e.g., *Human Error*, *Mechanical Failure*)
-4. Presents **Corrective + Preventive** action plan
+1. User inputs a deviation report (plain text)
+2. **Summarization** via retrieval-augmented generation (RAG)
+3. **Root cause classification** into categories like *Human Error*, *Equipment Failure*, etc.
+4. **Generation of CAPA suggestions** for corrective and preventive actions
+5. Display of structured output in Streamlit UI
 
 ---
 
-## RAG + Summarization Architecture
+## Architecture Diagram
 
 ```mermaid
 graph LR
-A[Deviation Report] --> B[Vector Embed]
-B --> C[FAISS Search]
-C --> D[Top K Similar Docs]
-D --> E[RAG Summarizer]
-E --> F[Root Cause Classifier]
-F --> G[CAPA Plan Generator]
+  A[Deviation Report Text] --> B[Vector Embedding (MiniLM)]
+  B --> C[FAISS Semantic Search]
+  C --> D[Retrieve Top-K Relevant SOPs]
+  D --> E[RAG Summarizer (BART + Context)]
+  E --> F[Root Cause Classifier (LLM Chain)]
+  F --> G[CAPA Suggestion Generator (LLM Chain)]
+  G --> H[Streamlit UI Output]
 ```
-
-* SentenceTransformer: `all-MiniLM-L6-v2`
-* Retriever returns SOPs or past deviations
-* Summarizer generates context-aware summaries
-* Classifier maps summary → root cause
 
 ---
 
 ## File Structure
 
 ```
-CAPAAgenticAssistant/
+capa_deviation_reasoning_agent/
 │
-├── data/                    # Sample deviations & SOP docs
+├── data/                     # Example deviations & SOP documents
 ├── tools/
-│   ├── document_reader.py   # File parsing
-│   ├── rag_index.py         # RAG retrieval logic
-├── capa_agent.py            # Core summarization + CAPA engine
-├── main.py                  # Streamlit app
+│   ├── document_reader.py    # File loading/parsing logic
+│   ├── rag_index.py          # Vector store build/load + retrieval
+│   ├── chains.py             # LLM chains (summarize, classify, suggest)
+│   ├── langgraph_capa.py     # LangGraph workflow definition
+├── main.py                   # Streamlit app entry point
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## Requirements
+## Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-**Python ≥ 3.9 recommended** due to dependency constraints (especially for `safetensors`, `torch`, etc.)
+> **Note:** Python 3.9+ recommended due to dependencies like `transformers`, `torch`, and `faiss-cpu`.
+> Make sure to set your OpenAI API key as environment variable:
+>
+> ```bash
+> export OPENAI_API_KEY="your_openai_api_key"
+> ```
 
 ---
 
 ## Skills Demonstrated
 
-* LLM Prompting + Pipeline Integration
-* Summarization (BART)
-* Embedding Search (FAISS, MiniLM)
-* Agentic Reasoning (rule-based + model-aided)
-* GxP/QMS Domain Familiarity
-* Streamlit App Delivery (UI + UX)
+* LLM prompt engineering and chaining
+* Retrieval-Augmented Generation (RAG) using FAISS and SentenceTransformers
+* Hybrid agentic reasoning with rule-based and LLM pipelines
+* Domain-specific design for GxP/QMS compliance environments
+* Streamlit app development for interactive UX
 
 ---
 
-## 💡 Future Enhancements
+## Future Enhancements
 
-* Replace rule-based classification with fine-tuned `DeBERTa`
-* Add feedback loop for human QA validation
-* Deploy RAG model with **LangChain** + **local embedding server**
-* Integrate versioned CAPA templates (XML/CSV outputs)
+* Replace heuristic root cause classifier with fine-tuned transformer model (e.g., DeBERTa)
+* Human-in-the-loop feedback to improve CAPA quality and validation
+* Deployment with LangChain agents and embedding servers for scalable RAG
+* Versioned CAPA templates export (XML, CSV) for ERP/QMS integration
 
 ---
 
-## 🧑‍💻 Maintainer
+## Maintainer
 
 **Maryam Jameela**
-AI Scientist & Engineer |  Applied ML and Computer Vision 
+AI Scientist & Engineer | Applied Machine Learning Specialist
 
+---
+
+If you want, I can help draft the `requirements.txt` or deployment instructions next!
