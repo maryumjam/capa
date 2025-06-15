@@ -12,9 +12,9 @@ class CAPAState(TypedDict):
     preventive: str
 
 # Instantiate chains (assuming these are already LLMChain objects)
-summarize_chain = RagSummarizeRunnable()
-classify_chain = ClassifyChain
-suggest_chain = SuggestChain
+summarize_chain = RagSummarizeRunnable() #This one is using RAG database generate by us 
+classify_chain = ClassifyChain # using llms
+suggest_chain = SuggestChain # using llms
 
 def summarize_node(state):
     summary =  summarize_chain.invoke({"text": state["text"]})["summary"]
