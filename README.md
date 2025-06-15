@@ -78,9 +78,9 @@ graph LR
   A[Deviation Report] --> B[Vector Embed]
   B --> C[FAISS Semantic Search]
   C --> D[Retrieve Top-K Relevant SOPs]
-  D --> E[RAG Summarizer (BART + Context)]
-  E --> F[Root Cause Classifier (LLM Chain)]
-  F --> G[CAPA Suggestion Generator (LLM Chain)]
+  D --> E[RAG Summarizer BART + Context]
+  E --> F[Root Cause Classifier LLM Chain]
+  F --> G[CAPA Suggestion Generator LLM Chain]
   G --> H[Streamlit UI Output]
 ```
 
