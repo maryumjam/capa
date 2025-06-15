@@ -30,14 +30,14 @@ classify_prompt = PromptTemplate(
     input_variables=["summary"],
     template="Based on this summary, classify the root cause:\n\n{summary}"
 )
-ClassifyChain = LLMChain(llm=llm, prompt=classify_prompt) #Use GPT
+ClassifyChain = LLMChain(llm=llm, prompt=classify_prompt) #text-davinci-003
 
 # SuggestChain
 suggest_prompt = PromptTemplate(
     input_variables=["root_cause"],
     template="Suggest CAPA corrective and preventive actions for this root cause:\n\n{root_cause}"
 )
-SuggestChain = LLMChain(llm=llm, prompt=suggest_prompt) #use GPTA
+SuggestChain = LLMChain(llm=llm, prompt=suggest_prompt) #text-davinci-003
 
 
 
