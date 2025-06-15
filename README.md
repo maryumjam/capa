@@ -185,6 +185,3 @@ Let me know if you want a `docker-compose.yml` version or development tips (like
 **Maryam Jameela**
 AI Scientist & Engineer | Applied Machine Learning Specialist
 
----
-
-If you want, I can help draft the `requirements.txt` or deployment instructions next!
