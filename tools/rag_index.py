@@ -6,8 +6,9 @@ import numpy as np
 INDEX_PATH = "data/vector_store/faiss_index.bin"
 DOCS_PATH = "data/vector_store/docs.npy"
 META_PATH = "data/vector_store/meta.npy"
-MODEL_NAME = "all-MiniLM-L6-v2"
+MODEL_NAME = "all-MiniLM-L6-v2" #sentence transformer
 
+# Create vector database using simulated CAPAs can be used to create any docs text to embeddings->indexes and then save those indeices in database
 def build_vector_store(doc_folder="data/docs/"):
     os.makedirs("data/vector_store", exist_ok=True)
     model = SentenceTransformer(MODEL_NAME)
@@ -33,7 +34,7 @@ def build_vector_store(doc_folder="data/docs/"):
 
     return model, index, texts, metadata
 
-
+#Load vector database
 def load_vector_store():
     model = SentenceTransformer(MODEL_NAME)
     index = faiss.read_index(INDEX_PATH)
@@ -41,7 +42,7 @@ def load_vector_store():
     metadata = np.load(META_PATH, allow_pickle=True)
     return model, index, texts.tolist(), metadata.tolist()
 
-
+# Retrive similar to query text rag files
 def retrieve_similar(text, model, index, texts, metadata, k=3):
     query_embedding = model.encode([text])
     D, I = index.search(query_embedding, k)
