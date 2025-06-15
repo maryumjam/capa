@@ -7,6 +7,8 @@
 
 **A domain-aware, retrieval-augmented agent for analyzing pharmaceutical/biotech deviation reports and recommending structured CAPA (Corrective and Preventive Action) plans.**
 
+![Streamlit UI](demo/1_1.png)
+
 ---
 
 ## Overview
