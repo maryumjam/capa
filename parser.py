@@ -4,7 +4,7 @@ import json
 
 
 def extract_section(text, keyword):
-    """Find section content by keyword"""
+    #find section with keywords
     pattern = rf"{keyword}[:\n](.*?)(?=\n[A-Z][a-zA-Z ]+:|\Z)"
     match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
     return match.group(1).strip() if match else None
