@@ -1,4 +1,4 @@
-# Use official Python image with 3.10
+# Python image with 3.10
 FROM python:3.10-slim
 
 # Set working directory
@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy files
 COPY . .
 
-# Install system dependencies (add more if needed)
+# Install system dependencies 
 RUN apt-get update && apt-get install -y \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
