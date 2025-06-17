@@ -1,4 +1,4 @@
-# tools/document_reader.py
+
 
 import os
 import fitz  # PyMuPDF
